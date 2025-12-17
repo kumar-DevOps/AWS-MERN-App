@@ -29,7 +29,7 @@ The project is to deploy a Travel Memory application using the MERN stack (Mongo
 4.	Application Testing <br>
 
 ## Architecture
-<img width="8241" height="2502" alt="image" src="https://github.com/user-attachments/assets/c59e8273-dcdd-4af3-adf9-b25ce11c595b" />
+<img width="8241" height="2502" alt="image" src="https://github.com/kumar-DevOps/AWS-MERN-App/blob/main/TravelMemory%20Architecture%20Diagram.png" />
 
 **Flow of the application**
  - End user opens the browser and hits https://kumarkanishk.online/
@@ -59,7 +59,7 @@ The project is to deploy a Travel Memory application using the MERN stack (Mongo
  - subnet: public subnet
  - auto-assign public IP: Enable
  - Security group: SSH, HTTP, HTTPS, Port 3000 and 3001 enabled<br>
-<img width="327" height="489" alt="image" src="https://github.com/user-attachments/assets/ef7d02e6-d428-4537-b270-66560f73251c" /><br>
+
 ### 3.	Installing applications / packages and setting up reverse proxy using nginx EC2 instance <br>
 Run the below unix commands: <br>
 
@@ -145,37 +145,7 @@ Start the backend server
 http://locahost:3001
 ```
 
-### 7. Verify backend server
-
-To verify the back server, copy the public IP of two instances and paste it in any browser. And note, port number is not required  as we have configured reverse proxy<br>
-Example: http://18.60.97.157/ and you should see below message – <br>
-<img width="193" height="57" alt="image" src="https://github.com/user-attachments/assets/a13c2605-793a-45e3-9a78-47eb385c81fa" /><br>
-When you suffix /hello to the above IP address, you should see Hello World <br>
-<img width="195" height="59" alt="image" src="https://github.com/user-attachments/assets/f4e2848c-20e3-4f20-99e0-7e36a3f0bd46" /><br>
-
-### 8.	Create a certificate on ACM (AWS Certificate Manager) with your domain name
-**Note** – there should a domain registered in any web hosting provider
-
-On AWS, search ACM -> go to certificate manager -> Request and follow the below steps<br>
-<img width="468" height="125" alt="image" src="https://github.com/user-attachments/assets/e5686c4b-4763-4809-89c1-1bbe8c3d1108" /><br>
-
-In Request public certificate page, 
-- Enter the below details:
-  - Domain names: full qualified domain name
-  - Once filled click on Request
-Example as shown below screenshot
-<img width="468" height="355" alt="image" src="https://github.com/user-attachments/assets/58f6d160-2c94-4903-bdf2-ce9ad1e6d3d3" />
-
-It will navigate to a page where it will have CNAME name and CNAME value as shown below
-<img width="468" height="305" alt="image" src="https://github.com/user-attachments/assets/5cffe4c8-e502-434c-a0d0-59438bbace88" />
-
-Add CNAME name and CNAME value in your web hosting provide as CNAME record <br>
-<img width="368" height="276" alt="image" src="https://github.com/user-attachments/assets/e310fa38-65a4-4785-9a17-4c264a8c1504" />
-
-Wait for some time, ACM should show a message as issued for the certificate
-<img width="468" height="307" alt="image" src="https://github.com/user-attachments/assets/6867ebdb-69c3-4254-8b96-474aaf070721" />
-
-### 9. Create Target Group (with HTTP) and Application Load Balancer (with HTTPS) protocol and test the Load balancer
+### 7. Create Target Group (with HTTP) and Application Load Balancer (with HTTPS) protocol and test the Load balancer
 <u>Create Target Groups</u>, Navigate to EC2 -> Load Balancing -> Target Groups 
 Under Create target group page, select: 
 - Target Type: instances
@@ -231,7 +201,7 @@ Add CNAME to web hosting provider: Add the dns (backend endpoint) in your name a
 - Host: backend
 - Value: dns (without prefix and suffix)<br>
 <img width="410" height="289" alt="image" src="https://github.com/user-attachments/assets/625ec287-e567-4165-8d40-e88b108084d6" /><br>
-Now, **backend should be accessible at** https://backend.vikramhemchandar.live
+Now, **backend should be accessible at** https://backend.kumarkanishk.online.live
 
 ## Frontend Configuration
 
@@ -252,7 +222,7 @@ Verify NodeJS and npm versions
 ```
 > nano url.js
 > cat url.js
-export const baseUrl = process.env.REACT_APP_BACKEND_URL || "https://backend.vikramhemchandar.live";
+export const baseUrl = process.env.REACT_APP_BACKEND_URL || "https://backend.kumarkanishk.online.live";
 ```
 ### 3.	Install npm for 2 frontend instances and start the backend server
 Install npm for 2 frontend instances
@@ -334,11 +304,6 @@ Under Create Application Load Balancer page, select:
 **Testing Load Balancer:**
  - Once the ALB is active, copy the dns and paste it any browser. Prefix with https:// to the dns url and you should see Travel Memory application
 
-**Add CNAME** to web hosting provider: Add the dns (frontend endpoint) in your name as –
- - Type: CNAME
- - Host: @
- - Value: dns (without prefix and suffix) <br>
-<img width="452" height="199" alt="image" src="https://github.com/user-attachments/assets/60730c04-4d4c-47ed-b007-7c6d20803b2c" /><br>
 
 ## Domain Configuration
 **Add CNAME records for the domain**
@@ -346,58 +311,16 @@ Add the below records:
  - CNAME Record:
    - Type: CNAME
    - Host: www
-   - Value: vikramhemchandar.live<br>
+   - Value: kumarkanishk.online.live<br>
    
 In total, there should be 5 CNAME entries for this project:
-1.	Domain – host: www and value: vikramhemchandar.live
-2.	Backend certificate: Step 8 in Backend configuration (for backend.vikramhemchandar.live)
-3.	Frontend certificate: Step 4 in Frontend configuration (for www.vikramhemchandar.live)
+1.	Domain – host: www and value: kumarkanishk.online.live
+2.	Backend certificate: Step 8 in Backend configuration (for backend.kumarkanishk.online.live)
+3.	Frontend certificate: Step 4 in Frontend configuration (for www.kumarkanishk.online.live)
 4.	Backend DNS endpoint entry
 5.	Frontend DNS endpoint entry
 
 **Tip** – if you need to configure IP address for a single instance, create A record and provide the IP Address of EC2 in Value column
 <img width="406" height="293" alt="image" src="https://github.com/user-attachments/assets/63cc4def-26be-4c66-8a1e-392e4e6219eb" />
-
-## Application Testing
-
- - Open the application: https://www.vikramhemchandar.live<br>
-<img width="389" height="160" alt="image" src="https://github.com/user-attachments/assets/f5354b35-b537-465c-815f-9c8478f5067c" /><br>
-
- - Click Add Experience and add your Travel Memory and submit<br>
- <img width="389" height="372" alt="image" src="https://github.com/user-attachments/assets/5778d014-3da2-4744-aad9-da517375a91c" />
-
- - Go to Travel memory on top left, you should see your travel memory entry added in the list. Here, it is Bali <br>
-  <img width="485" height="240" alt="image" src="https://github.com/user-attachments/assets/9c296c2b-984c-4e57-82b3-29e99a1f9d4e" />
-
- - click on more details to see your travel memory details<br>
- <img width="426" height="624" alt="image" src="https://github.com/user-attachments/assets/f23163e9-d933-4a8c-8c6a-d5eedbf48ed7" /><br>
-
- - Database records for Travel Memory entries<br>
- <img width="468" height="340" alt="image" src="https://github.com/user-attachments/assets/ddec28b8-aaee-4e40-806c-d5c787fc407e" />
-
-#### 📄 License
-
-Author: Vikram Hem Chandar <br>
-Repository: https://github.com/vikramhemchandar/AWS-MERN-Application-Deployment
-
-This source code is provided for learning and reference purposes only.
-
-© 2025 Vikram Hem Chandar
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<img width="1536" height="1024" alt="TravelMemory Architecture Diagram" src="https://github.com/user-attachments/assets/daf7199c-079c-417d-b47a-4a0f80c8eb2d" />
+<img width="1536" height="1024" alt="TravelMemory Architecture Diagram" src="https://github.com/user-attachments/assets/0a5c9b13-1ba1-4f65-8b1a-0d81416169a3" />
