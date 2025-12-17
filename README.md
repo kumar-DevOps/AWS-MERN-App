@@ -200,7 +200,7 @@ Add CNAME to web hosting provider: Add the dns (backend endpoint) in your name a
 - Type: CNAME
 - Host: backend
 - Value: dns (without prefix and suffix)<br>
-<img width="410" height="289" alt="image" src="https://github.com/user-attachments/assets/625ec287-e567-4165-8d40-e88b108084d6" /><br>
+
 Now, **backend should be accessible at** https://backend.kumarkanishk.online.live
 
 ## Frontend Configuration
@@ -319,8 +319,3 @@ In total, there should be 5 CNAME entries for this project:
 3.	Frontend certificate: Step 4 in Frontend configuration (for www.kumarkanishk.online.live)
 4.	Backend DNS endpoint entry
 5.	Frontend DNS endpoint entry
-
-**Tip** – if you need to configure IP address for a single instance, create A record and provide the IP Address of EC2 in Value column
-<img width="406" height="293" alt="image" src="https://github.com/user-attachments/assets/63cc4def-26be-4c66-8a1e-392e4e6219eb" />
-<img width="1536" height="1024" alt="TravelMemory Architecture Diagram" src="https://github.com/user-attachments/assets/daf7199c-079c-417d-b47a-4a0f80c8eb2d" />
-<img width="1536" height="1024" alt="TravelMemory Architecture Diagram" src="https://github.com/user-attachments/assets/0a5c9b13-1ba1-4f65-8b1a-0d81416169a3" />
